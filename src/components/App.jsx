@@ -2,11 +2,18 @@ import "./App.css";
 import ContactForm from "../components/ContactFrom/ContactFrom";
 import Filter from "./Filter/Filter";
 import ContactsList from "./ContactsList/ContactsList";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectContactsAmount } from "../Redux/contacts/slice";
+import { useEffect } from "react";
+import { fetchContacts } from "../Redux/contacts/operations";
 
 function App() {
   const contactsAmount = useSelector(selectContactsAmount);
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(fetchContacts())
+  }, [dispatch])
 
   return (
     <>

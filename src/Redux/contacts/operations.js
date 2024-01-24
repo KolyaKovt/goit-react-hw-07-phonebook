@@ -8,29 +8,40 @@ const server = axios.create({
 export const fetchContacts = createAsyncThunk(
   "fetchContacts",
   async (_, thunkApi) => {
-    const res = await server.get("contacts")
-
-    return res.data
+    try {
+      const res = await server.get("contacts")
+      return res.data
+    } catch (error) {
+      thunkApi.rejectWithValue(error)
+    }
   }
 )
 
 export const addContact = createAsyncThunk(
   "addContact",
   async (contact, thunkApi) => {
-    const res = await server.post(`contacts`, {
-      name: contact.name,
-      phone: contact.phone,
-    })
+    try {
+      const res = await server.post(`contacts`, {
+        name: contact.name,
+        phone: contact.phone,
+      })
 
-    return res.data
+      return res.data
+    } catch (error) {
+      thunkApi.rejectWithValue(error)
+    }
   }
 )
 
 export const deleteContact = createAsyncThunk(
   "deleteContact",
   async (id, thunkApi) => {
-    const res = await server.delete(`contacts/${id}`)
+    try {
+      const res = await server.delete(`contacts/${id}`)
 
-    return res.data
+      return res.data
+    } catch (error) {
+      thunkApi.rejectWithValue(error)
+    }
   }
 )
