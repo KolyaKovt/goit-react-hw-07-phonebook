@@ -1,27 +1,37 @@
 import { useDispatch, useSelector } from "react-redux"
-import { selectContacts, deleteContact } from "../../redux/contacts/slice"
+import { selectContacts, selectIsLoading } from "../../redux/contacts/slice"
 import { selectFilter } from "../../redux/filter/slice"
+import { useEffect } from "react"
+import { deleteContact, fetchContacts } from "../../redux/contacts/operations"
 
 const ContactsList = () => {
   const dispatch = useDispatch()
   const contacts = useSelector(selectContacts)
   const filter = useSelector(selectFilter)
+  const isLoading = useSelector(selectIsLoading)
+
+  useEffect(() => {
+    dispatch(fetchContacts())
+  }, [dispatch])
 
   const filteredContucts = contacts.filter(contact =>
     contact.name.trim().toLowerCase().includes(filter.trim().toLowerCase())
   )
 
   return (
-    <ul>
-      {filteredContucts.map(contact => (
-        <li key={contact.id}>
-          {contact.name}: {contact.number}{" "}
-          <button onClick={() => dispatch(deleteContact(contact.id))}>
-            Delete
-          </button>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {filteredContucts.map(contact => (
+          <li key={contact.id}>
+            {contact.name}: {contact.phone}{" "}
+            <button onClick={() => dispatch(deleteContact(contact.id))}>
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+      {isLoading && <h1>Loading...</h1>}
+    </>
   )
 }
 
