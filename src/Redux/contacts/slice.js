@@ -50,8 +50,8 @@ const contactsSlice = createSlice({
       )
       .addMatcher(
         action => action.type.endsWith("/rejected"),
-        state => {
-          state.error = "error"
+        (state, { payload }) => {
+          state.error = payload
         }
       )
   },
