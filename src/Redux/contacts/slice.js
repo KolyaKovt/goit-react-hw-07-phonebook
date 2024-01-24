@@ -10,19 +10,6 @@ const initialState = {
 const contactsSlice = createSlice({
   name: "contacts",
   initialState,
-  reducers: {
-    addContact: {
-      prepare: contact => ({
-        payload: {
-          ...contact,
-          id: nanoid(),
-        },
-      }),
-      reducer: (state, { payload }) => {
-        state.contacts.push(payload)
-      },
-    },
-  },
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.fulfilled, (state, { payload }) => {
@@ -45,12 +32,14 @@ const contactsSlice = createSlice({
       .addMatcher(
         action => action.type.endsWith("/fulfilled"),
         state => {
+          state.error = null
           state.isLoading = false
         }
       )
       .addMatcher(
         action => action.type.endsWith("/rejected"),
         (state, { payload }) => {
+          console.log("here");
           state.error = payload
         }
       )
@@ -59,6 +48,7 @@ const contactsSlice = createSlice({
     selectContacts: state => state.contacts,
     selectContactsAmount: state => state.contacts.length,
     selectIsLoading: state => state.isLoading,
+    selectError: state => state.error,
   },
 })
 
@@ -68,4 +58,5 @@ export const {
   selectContacts,
   selectContactsAmount,
   selectIsLoading,
+  selectError,
 } = contactsSlice.selectors

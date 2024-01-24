@@ -12,7 +12,7 @@ export const fetchContacts = createAsyncThunk(
       const res = await server.get("contacts")
       return res.data
     } catch (error) {
-      thunkApi.rejectWithValue(error)
+      return handleError(thunkApi, error)
     }
   }
 )
@@ -28,7 +28,7 @@ export const addContact = createAsyncThunk(
 
       return res.data
     } catch (error) {
-      thunkApi.rejectWithValue(error)
+      return handleError(thunkApi, error)
     }
   }
 )
@@ -41,7 +41,11 @@ export const deleteContact = createAsyncThunk(
 
       return res.data
     } catch (error) {
-      thunkApi.rejectWithValue(error)
+      return handleError(thunkApi, error)
     }
   }
 )
+
+const handleError = (thunkApi, error) => {
+  return thunkApi.rejectWithValue(error.message)
+}
