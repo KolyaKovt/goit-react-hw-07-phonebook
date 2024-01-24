@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form"
 import { StyledButton, StyledForm, StyledLabel } from "./ContactForm.styled"
 import { useDispatch, useSelector } from "react-redux"
-import { addContact, selectContacts } from "../../redux/contacts/slice"
+import { selectContacts } from "../../redux/contacts/slice"
+import { addContact } from "../../redux/contacts/operations"
 
 const ContactFrom = () => {
   const dispatch = useDispatch()
@@ -30,7 +31,7 @@ const ContactFrom = () => {
       <StyledLabel htmlFor="number" required>
         Number
       </StyledLabel>
-      <input type="tel" id="number" {...register("number")} required />
+      <input type="tel" id="number" {...register("phone")} required />
       <StyledButton>Add the contact</StyledButton>
     </StyledForm>
   )

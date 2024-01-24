@@ -1,5 +1,5 @@
-import { createSlice, isAnyOf, nanoid } from "@reduxjs/toolkit"
-import { fetchContacts, deleteContact } from "./operations"
+import { createSlice, nanoid } from "@reduxjs/toolkit"
+import { fetchContacts, deleteContact, addContact } from "./operations"
 
 const initialState = {
   contacts: [],
@@ -27,6 +27,9 @@ const contactsSlice = createSlice({
     builder
       .addCase(fetchContacts.fulfilled, (state, { payload }) => {
         state.contacts = payload
+      })
+      .addCase(addContact.fulfilled, (state, { payload }) => {
+        state.contacts.push(payload)
       })
       .addCase(deleteContact.fulfilled, (state, { payload }) => {
         state.contacts = state.contacts.filter(
@@ -60,7 +63,7 @@ const contactsSlice = createSlice({
 })
 
 export const contactsReducer = contactsSlice.reducer
-export const { addContact } = contactsSlice.actions
+
 export const {
   selectContacts,
   selectContactsAmount,
