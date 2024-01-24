@@ -3,7 +3,7 @@ import ContactForm from "../components/ContactFrom/ContactFrom";
 import Filter from "./Filter/Filter";
 import ContactsList from "./ContactsList/ContactsList";
 import { useSelector } from "react-redux";
-import { selectContactsAmount } from "../Redux/contacts/slice";
+import { selectContactsAmount } from "../redux/contacts/slice";
 
 function App() {
   const contactsAmount = useSelector(selectContactsAmount);
