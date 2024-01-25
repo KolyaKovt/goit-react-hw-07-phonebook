@@ -1,5 +1,6 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit"
+import { createSelector, createSlice, nanoid } from "@reduxjs/toolkit"
 import { fetchContacts, deleteContact, addContact } from "./operations"
+import { selectFilter } from "../filter/slice"
 
 const initialState = {
   contacts: [],
@@ -39,7 +40,7 @@ const contactsSlice = createSlice({
       .addMatcher(
         action => action.type.endsWith("/rejected"),
         (state, { payload }) => {
-          console.log("here");
+          console.log("here")
           state.error = payload
         }
       )
@@ -60,3 +61,15 @@ export const {
   selectIsLoading,
   selectError,
 } = contactsSlice.selectors
+
+export const selectFilteredContacts = createSelector(
+  [selectFilter, selectContacts],
+
+  (filter, contacts) => {
+    console.log("update");
+
+    return contacts.filter(contact =>
+      contact.name.trim().toLowerCase().includes(filter.trim().toLowerCase())
+    )
+  }
+)
