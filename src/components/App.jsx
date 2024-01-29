@@ -1,17 +1,17 @@
 import "./App.css"
-import ContactForm from "../components/ContactFrom/ContactFrom"
-import Filter from "./Filter/Filter"
-import ContactsList from "./ContactsList/ContactsList"
 import { useDispatch, useSelector } from "react-redux"
-import { selectContactsAmount, selectError } from "../Redux/contacts/slice"
+import { selectError } from "../Redux/contacts/slice"
 import { useEffect } from "react"
 import { fetchContacts } from "../Redux/contacts/operations"
-import { selectIsLoading } from "../Redux/contacts/slice"
+import { Route, Routes } from "react-router-dom"
+import Layout from "./Layout/Layout"
+import Home from "../pages/Home/Home"
+import Contacts from "../pages/Contacts/Contacts"
+import Login from "../pages/Login/Login"
+import Signup from "../pages/Signup/Signup"
 
 function App() {
-  const contactsAmount = useSelector(selectContactsAmount)
   const dispatch = useDispatch()
-  const isLoading = useSelector(selectIsLoading)
   const error = useSelector(selectError)
 
   useEffect(() => {
@@ -21,15 +21,14 @@ function App() {
   if (error) return <h1>{error}</h1>
 
   return (
-    <>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-
-      {contactsAmount ? <ContactsList /> : <p>no contacts found</p>}
-      {isLoading && <h1>Loading...</h1>}
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="contacts" element={<Contacts />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+      </Route>
+    </Routes>
   )
 }
 
