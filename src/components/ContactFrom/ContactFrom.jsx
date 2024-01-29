@@ -25,15 +25,35 @@ const ContactFrom = () => {
   }
 
   return (
-    <StyledForm onSubmit={handleSubmit(sumbit)}>
-      <StyledLabel htmlFor="name">Name</StyledLabel>
-      <input {...register("name")} id="name" />
-      <StyledLabel htmlFor="number" required>
-        Number
-      </StyledLabel>
-      <input type="tel" id="number" {...register("phone")} required />
-      <StyledButton>Add the contact</StyledButton>
-    </StyledForm>
+    <form onSubmit={handleSubmit(sumbit)} className="card-body mb-4">
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text">Name</span>
+        </label>
+        <input
+          {...register("name")}
+          type="text"
+          placeholder="name"
+          className="input input-bordered"
+          required
+        />
+      </div>
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text">Phone</span>
+        </label>
+        <input
+          {...register("phone")}
+          type="tel"
+          placeholder="phone"
+          className="input input-bordered"
+          required
+        />
+      </div>
+      <div className="form-control mt-6">
+        <button className="btn btn-primary">Login</button>
+      </div>
+    </form>
   )
 }
 

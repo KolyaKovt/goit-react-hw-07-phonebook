@@ -7,16 +7,31 @@ const ContactsList = () => {
   const contacts = useSelector(selectFilteredContacts)
 
   return (
-    <ul>
-      {contacts.map(contact => (
-        <li key={contact.id}>
-          {contact.name}: {contact.phone}{" "}
-          <button onClick={() => dispatch(deleteContact(contact.id))}>
-            Delete
-          </button>
-        </li>
-      ))}
-    </ul>
+    <div className="overflow-x-auto">
+      <table className="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contacts.map((contact, index) => (
+            <tr key={contact.id}>
+              <th>{index + 1}</th>
+              <td>{contact.name}</td>
+              <td>{contact.phone}</td>
+              <td>
+                <button className="btn btn-ghost btn-xs" onClick={() => dispatch(deleteContact(contact.id))}>
+                  delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 
