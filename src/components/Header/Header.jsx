@@ -1,19 +1,36 @@
 import { Link } from "react-router-dom"
-import { StyledHeader, StyledNav, StyledNavLink } from "./Header.styled"
 
 const Header = () => {
   return (
-    <StyledHeader>
-      <StyledNav>
-        <StyledNavLink to={"/"}>Home</StyledNavLink>
-        <StyledNavLink to={"/contacts"}>Contacts</StyledNavLink>
-      </StyledNav>
-
-      <div>
-        <Link to={"/login"}>Log in</Link>
-        <Link to={"/signup"}>Sign up</Link>
+    <header>
+      <div className="navbar bg-base-100">
+        <div className="flex-1">
+          <Link to={"/"} className="btn btn-ghost text-xl">
+            Home
+          </Link>
+        </div>
+        <div className="flex-none">
+          <ul className="menu menu-horizontal px-1">
+            <li>
+              <Link to={"/contacts"}>Contacts</Link>
+            </li>
+            <li>
+              <details>
+                <summary>Auth</summary>
+                <ul className="p-2 bg-base-100 rounded-t-none">
+                  <li>
+                    <Link to={"/login"}>Log in</Link>
+                  </li>
+                  <li>
+                    <Link to={"/register"}>Register</Link>
+                  </li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </div>
       </div>
-    </StyledHeader>
+    </header>
   )
 }
 

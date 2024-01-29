@@ -1,11 +1,11 @@
 import { StyledMain } from "../../components/Layout/Layout.styled"
 
-const Signup = () => {
+const Register = () => {
   return (
     <StyledMain>
-      <form>Signup</form>
+      <form>Register</form>
     </StyledMain>
   )
 }
 
-export default Signup
+export default Register
