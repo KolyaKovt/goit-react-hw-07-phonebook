@@ -4,11 +4,11 @@ import { selectError } from "../Redux/contacts/slice"
 import { useEffect } from "react"
 import { fetchContacts } from "../Redux/contacts/operations"
 import { Route, Routes } from "react-router-dom"
-import Layout from "./Layout/Layout"
-import Home from "../pages/Home/Home"
-import Contacts from "../pages/Contacts/Contacts"
-import Login from "../pages/Login/Login"
-import Register from "../pages/Register/Register"
+import Layout from "./Layout"
+import Home from "../pages/Home"
+import Contacts from "../pages/Contacts"
+import Login from "../pages/Login"
+import Register from "../pages/Register"
 
 function App() {
   const dispatch = useDispatch()

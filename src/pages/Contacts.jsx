@@ -1,10 +1,10 @@
-import ContactForm from "../../components/ContactFrom/ContactFrom"
-import Filter from "../../components/Filter/Filter"
-import ContactsList from "../../components/ContactsList/ContactsList"
+import ContactForm from "../components/ContactFrom"
+import Filter from "../components/Filter"
+import ContactsList from "../components/ContactsList"
 import {
   selectContactsAmount,
   selectIsLoading,
-} from "../../Redux/contacts/slice"
+} from "../Redux/contacts/slice"
 import { useSelector } from "react-redux"
 
 const Contacts = () => {

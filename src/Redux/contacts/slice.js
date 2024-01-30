@@ -1,4 +1,4 @@
-import { createSelector, createSlice, nanoid } from "@reduxjs/toolkit"
+import { createSelector, createSlice, isAnyOf } from "@reduxjs/toolkit"
 import { fetchContacts, deleteContact, addContact } from "./operations"
 import { selectFilter } from "../filter/slice"
 
@@ -25,22 +25,33 @@ const contactsSlice = createSlice({
         )
       })
       .addMatcher(
-        action => action.type.endsWith("/pending"),
+        isAnyOf(
+          fetchContacts.pending,
+          addContact.pending,
+          deleteContact.pending
+        ),
         state => {
           state.isLoading = true
         }
       )
       .addMatcher(
-        action => action.type.endsWith("/fulfilled"),
+        isAnyOf(
+          fetchContacts.fulfilled,
+          addContact.fulfilled,
+          deleteContact.fulfilled
+        ),
         state => {
           state.error = null
           state.isLoading = false
         }
       )
       .addMatcher(
-        action => action.type.endsWith("/rejected"),
+        isAnyOf(
+          fetchContacts.rejected,
+          addContact.rejected,
+          deleteContact.rejected
+        ),
         (state, { payload }) => {
-          console.log("here")
           state.error = payload
         }
       )
@@ -66,8 +77,6 @@ export const selectFilteredContacts = createSelector(
   [selectFilter, selectContacts],
 
   (filter, contacts) => {
-    console.log("update");
-
     return contacts.filter(contact =>
       contact.name.trim().toLowerCase().includes(filter.trim().toLowerCase())
     )

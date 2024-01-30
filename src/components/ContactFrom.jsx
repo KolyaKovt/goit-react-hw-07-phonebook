@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form"
-import { StyledButton, StyledForm, StyledLabel } from "./ContactForm.styled"
 import { useDispatch, useSelector } from "react-redux"
-import { selectContacts } from "../../Redux/contacts/slice"
-import { addContact } from "../../Redux/contacts/operations"
+import { selectContacts } from "../Redux/contacts/slice"
+import { addContact } from "../Redux/contacts/operations"
 
 const ContactFrom = () => {
   const dispatch = useDispatch()

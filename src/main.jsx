@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client"
 import App from "./components/App.jsx"
 import "modern-normalize/modern-normalize.css"
 import { Provider } from "react-redux"
-import { store } from "./Redux/store.js"
+import { store } from "./Redux"
 import { BrowserRouter } from "react-router-dom"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
