@@ -17,9 +17,11 @@ const Header = () => {
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
-            <li>
-              <Link to={"/contacts"}>Contacts</Link>
-            </li>
+            {isLoggedIn && (
+              <li>
+                <Link to={"/contacts"}>Contacts</Link>
+              </li>
+            )}
             <li>
               <details>{isLoggedIn ? <UserMenu /> : <AuthMenu />}</details>
             </li>
