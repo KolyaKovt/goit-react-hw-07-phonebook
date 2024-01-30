@@ -28,8 +28,6 @@ export const loginThunk = createAsyncThunk(
 export const refreshThunk = createAsyncThunk("refresh", async (_, thunkApi) => {
   try {
     const state = thunkApi.getState()
-    console.log(state.auth);
-    console.log(state.auth.token);
     const user = await refresh(state.auth.token)
     return user
   } catch (error) {

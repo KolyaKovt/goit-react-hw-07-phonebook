@@ -23,7 +23,6 @@ const slice = createSlice({
     builder
       .addCase(logoutThunk.fulfilled, () => initialState)
       .addCase(refreshThunk.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.user = payload
         state.isLoggedIn = true
       })
