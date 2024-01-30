@@ -1,5 +1,4 @@
 import axios from "axios"
-import { selectToken } from "../Redux/auth/slice"
 
 const server = axios.create({
   baseURL: "https://connections-api.herokuapp.com/",
@@ -42,8 +41,11 @@ export const getContacts = async () => {
 }
 
 export const addContact = async contact => {
-  const data = await server.post("/contacts", contact)
+  const { data } = await server.post("/contacts", contact)
   return data
 }
 
-export const deleteContact = async () => {}
+export const deleteContact = async id => {
+  const { data } = await server.delete(`/contacts/${id}`)
+  return data
+}

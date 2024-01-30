@@ -17,7 +17,7 @@ const Contacts = () => {
 
   return (
     <>
-      <div className="min-h-screen mx-auto w-96">
+      <div className="min-h-screen mx-auto w-[666px]">
         <h1 className="text-5xl font-bold">Phonebook</h1>
         <ContactForm />
         <h2 className="text-4xl font-bold mb-5">Contacts</h2>
