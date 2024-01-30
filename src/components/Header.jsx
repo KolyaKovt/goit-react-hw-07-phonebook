@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom"
-import { selectIsLoggedIn, selectUser } from "../Redux/auth/slice"
+import { selectIsLoggedIn } from "../Redux/auth/slice"
 import { useSelector } from "react-redux"
+import { AuthMenu } from "./AuthMenu"
+import { UserMenu } from "./UserMenu"
 
 const Header = () => {
-  // const isLoggedIn = useSelector(selectIsLoggedIn)
-  // const { name, email } = useSelector(selectUser)
+  const isLoggedIn = useSelector(selectIsLoggedIn)
 
   return (
-    <header className="px-5">
+    <header className="px-8">
       <div className="navbar bg-base-100">
         <div className="flex-1">
           <Link to={"/"} className="btn btn-ghost text-xl">
@@ -20,31 +21,7 @@ const Header = () => {
               <Link to={"/contacts"}>Contacts</Link>
             </li>
             <li>
-              <details>
-                {/* {isLoggedIn ? ( */}
-                  <>
-                    {/* <summary>{name}</summary> */}
-                    <ul className="p-2 bg-base-100 rounded-t-none">
-                      {/* <li>{email}</li> */}
-                      <li>
-                        <button type="button">Exit</button>
-                      </li>
-                    </ul>
-                  </>
-                {/* ) : ( */}
-                  <>
-                    <summary>Auth</summary>
-                    <ul className="p-2 bg-base-100 rounded-t-none">
-                      <li>
-                        <Link to={"/login"}>Log in</Link>
-                      </li>
-                      <li>
-                        <Link to={"/register"}>Register</Link>
-                      </li>
-                    </ul>
-                  </>
-                {/* )} */}
-              </details>
+              <details>{isLoggedIn ? <UserMenu /> : <AuthMenu />}</details>
             </li>
           </ul>
         </div>
