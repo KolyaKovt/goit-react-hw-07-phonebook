@@ -16,9 +16,7 @@ const slice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(logoutThunk.fulfilled, () => {
-        return initialState
-      })
+      .addCase(logoutThunk.fulfilled, () => initialState)
       .addMatcher(
         isAnyOf(registerThunk.fulfilled, loginThunk.fulfilled),
         (state, { payload }) => {

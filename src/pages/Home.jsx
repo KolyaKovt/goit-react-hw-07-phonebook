@@ -1,4 +1,10 @@
+import { useSelector } from "react-redux"
+import { selectIsLoggedIn } from "../Redux/auth/slice"
+import { Link } from "react-router-dom"
+
 const Home = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content text-center">
@@ -9,7 +15,12 @@ const Home = () => {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <Link
+            to={isLoggedIn ? "/contacts" : "/login"}
+            className="btn btn-primary"
+          >
+            Get Started
+          </Link>
         </div>
       </div>
     </div>
