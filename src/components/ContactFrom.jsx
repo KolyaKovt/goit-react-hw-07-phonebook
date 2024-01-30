@@ -42,15 +42,15 @@ const ContactFrom = () => {
           <span className="label-text">Number</span>
         </label>
         <input
-          {...register("Number")}
+          {...register("number")}
           type="tel"
-          placeholder="Number"
+          placeholder="number"
           className="input input-bordered"
           required
         />
       </div>
       <div className="form-control mt-6">
-        <button className="btn btn-primary">Login</button>
+        <button className="btn btn-primary">Add the contact</button>
       </div>
     </form>
   )

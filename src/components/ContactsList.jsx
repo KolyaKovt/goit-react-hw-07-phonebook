@@ -21,7 +21,7 @@ const ContactsList = () => {
             <tr key={contact.id}>
               <th>{index + 1}</th>
               <td>{contact.name}</td>
-              <td>{contact.Number}</td>
+              <td>{contact.number}</td>
               <td>
                 <button className="btn btn-ghost btn-xs" onClick={() => dispatch(deleteContactThunk(contact.id))}>
                   delete

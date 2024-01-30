@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { useDispatch } from "react-redux"
 import { registerThunk } from "../Redux/auth/operations";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -17,9 +18,7 @@ const Register = () => {
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Register now!</h1>
           <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+             You have an account yet? You can log in <Link to={"/login"}>here</Link>
           </p>
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
