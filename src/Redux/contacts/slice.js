@@ -5,6 +5,7 @@ import {
   addContactThunk,
 } from "./operations"
 import { selectFilter } from "../filter/slice"
+import { logoutThunk } from "../auth/operations"
 
 const initialState = {
   contacts: [],
@@ -20,6 +21,7 @@ const contactsSlice = createSlice({
       .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
         state.contacts = payload
       })
+      .addCase(logoutThunk.fulfilled, () => initialState)
       .addCase(addContactThunk.fulfilled, (state, { payload }) => {
         state.contacts.push(payload)
       })

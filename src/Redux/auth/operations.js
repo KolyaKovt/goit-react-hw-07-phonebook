@@ -28,10 +28,13 @@ export const loginThunk = createAsyncThunk(
 export const refreshThunk = createAsyncThunk("refresh", async (_, thunkApi) => {
   try {
     const token = thunkApi.getState().auth.token
-    if (!token) thunkApi.rejectWithValue("there's no token")
-    
-    const user = await refresh(token)
-    return user
+
+    if (token) {
+      const user = await refresh(token)
+      return user
+    }
+
+    return thunkApi.rejectWithValue("there's no token")
   } catch (error) {
     return thunkApi.rejectWithValue(error.message)
   }
