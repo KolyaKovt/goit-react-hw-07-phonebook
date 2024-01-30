@@ -12,6 +12,8 @@ import { useEffect } from "react"
 import { selectError } from "../Redux/contacts/slice"
 import { refreshThunk } from "../Redux/auth/operations"
 import "./App.css"
+import PrivateRoute from "../routes/PrivateRoute"
+import PublicRoute from "../routes/PublicRoute"
 
 function App() {
   const dispatch = useDispatch()
@@ -27,9 +29,30 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="contacts" element={<Contacts />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route
+          path="contacts"
+          element={
+            <PrivateRoute>
+              <Contacts />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
       </Route>
     </Routes>
   )

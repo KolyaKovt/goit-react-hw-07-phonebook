@@ -30,7 +30,7 @@ export const logout = async () => {
   clearToken()
 }
 
-export const refresh = async (token) => {
+export const refresh = async token => {
   setToken(token)
   const { data } = await server.get("/users/current")
   return data
