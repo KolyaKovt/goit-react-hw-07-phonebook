@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { selectFilteredContacts } from "../Redux/contacts/slice"
-import { deleteContact } from "../Redux/contacts/operations"
+import { deleteContactThunk } from "../Redux/contacts/operations"
 
 const ContactsList = () => {
   const dispatch = useDispatch()
@@ -21,9 +21,9 @@ const ContactsList = () => {
             <tr key={contact.id}>
               <th>{index + 1}</th>
               <td>{contact.name}</td>
-              <td>{contact.phone}</td>
+              <td>{contact.Number}</td>
               <td>
-                <button className="btn btn-ghost btn-xs" onClick={() => dispatch(deleteContact(contact.id))}>
+                <button className="btn btn-ghost btn-xs" onClick={() => dispatch(deleteContactThunk(contact.id))}>
                   delete
                 </button>
               </td>

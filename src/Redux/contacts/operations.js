@@ -1,48 +1,39 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import axios from "axios"
+import { addContact, getContacts } from "../../services/api"
 
-const server = axios.create({
-  baseURL: "https://65b11340d16d31d11bddff25.mockapi.io/",
-})
-
-export const fetchContacts = createAsyncThunk(
+export const fetchContactsThunk = createAsyncThunk(
   "fetchContacts",
   async (_, thunkApi) => {
     try {
-      const res = await server.get("contacts")
-      return res.data
+      const data = await getContacts()
+      return data
     } catch (error) {
       return handleError(thunkApi, error)
     }
   }
 )
 
-export const addContact = createAsyncThunk(
+export const addContactThunk = createAsyncThunk(
   "addContact",
   async (contact, thunkApi) => {
     try {
-      const res = await server.post(`contacts`, {
-        name: contact.name,
-        phone: contact.phone,
-      })
-
-      return res.data
+      const data = await addContact(contact)
+      return data
     } catch (error) {
       return handleError(thunkApi, error)
     }
   }
 )
 
-export const deleteContact = createAsyncThunk(
+export const deleteContactThunk = createAsyncThunk(
   "deleteContact",
   async (id, thunkApi) => {
-    try {
-      const res = await server.delete(`contacts/${id}`)
-
-      return res.data
-    } catch (error) {
-      return handleError(thunkApi, error)
-    }
+    // try {
+    //   const res = await server.delete(`contacts/${id}`)
+    //   return res.data
+    // } catch (error) {
+    //   return handleError(thunkApi, error)
+    // }
   }
 )
 

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { selectContacts } from "../Redux/contacts/slice"
-import { addContact } from "../Redux/contacts/operations"
+import { addContactThunk } from "../Redux/contacts/operations"
 
 const ContactFrom = () => {
   const dispatch = useDispatch()
@@ -19,7 +19,7 @@ const ContactFrom = () => {
       return
     }
 
-    dispatch(addContact(data))
+    dispatch(addContactThunk(data))
     reset()
   }
 
@@ -39,12 +39,12 @@ const ContactFrom = () => {
       </div>
       <div className="form-control">
         <label className="label">
-          <span className="label-text">Phone</span>
+          <span className="label-text">Number</span>
         </label>
         <input
-          {...register("phone")}
+          {...register("Number")}
           type="tel"
-          placeholder="phone"
+          placeholder="Number"
           className="input input-bordered"
           required
         />

@@ -2,11 +2,18 @@ import ContactForm from "../components/ContactFrom"
 import Filter from "../components/Filter"
 import ContactsList from "../components/ContactsList"
 import { selectContactsAmount, selectIsLoading } from "../Redux/contacts/slice"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { fetchContactsThunk } from "../Redux/contacts/operations"
 
 const Contacts = () => {
   const contactsAmount = useSelector(selectContactsAmount)
   const isLoading = useSelector(selectIsLoading)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchContactsThunk())
+  }, [dispatch])
 
   return (
     <>

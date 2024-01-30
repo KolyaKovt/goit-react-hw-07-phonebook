@@ -1,5 +1,9 @@
 import { createSelector, createSlice, isAnyOf } from "@reduxjs/toolkit"
-import { fetchContacts, deleteContact, addContact } from "./operations"
+import {
+  fetchContactsThunk,
+  deleteContactThunk,
+  addContactThunk,
+} from "./operations"
 import { selectFilter } from "../filter/slice"
 
 const initialState = {
@@ -13,22 +17,22 @@ const contactsSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(fetchContacts.fulfilled, (state, { payload }) => {
+      .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
         state.contacts = payload
       })
-      .addCase(addContact.fulfilled, (state, { payload }) => {
+      .addCase(addContactThunk.fulfilled, (state, { payload }) => {
         state.contacts.push(payload)
       })
-      .addCase(deleteContact.fulfilled, (state, { payload }) => {
+      .addCase(deleteContactThunk.fulfilled, (state, { payload }) => {
         state.contacts = state.contacts.filter(
           contact => contact.id !== payload.id
         )
       })
       .addMatcher(
         isAnyOf(
-          fetchContacts.pending,
-          addContact.pending,
-          deleteContact.pending
+          fetchContactsThunk.pending,
+          addContactThunk.pending,
+          deleteContactThunk.pending
         ),
         state => {
           state.isLoading = true
@@ -36,9 +40,9 @@ const contactsSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          fetchContacts.fulfilled,
-          addContact.fulfilled,
-          deleteContact.fulfilled
+          fetchContactsThunk.fulfilled,
+          addContactThunk.fulfilled,
+          deleteContactThunk.fulfilled
         ),
         state => {
           state.error = null
@@ -47,9 +51,9 @@ const contactsSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          fetchContacts.rejected,
-          addContact.rejected,
-          deleteContact.rejected
+          fetchContactsThunk.rejected,
+          addContactThunk.rejected,
+          deleteContactThunk.rejected
         ),
         (state, { payload }) => {
           state.error = payload

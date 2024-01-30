@@ -1,21 +1,24 @@
-import "./App.css"
 import { useDispatch, useSelector } from "react-redux"
-import { selectError } from "../Redux/contacts/slice"
-import { useEffect } from "react"
-import { fetchContacts } from "../Redux/contacts/operations"
-import { Route, Routes } from "react-router-dom"
+
 import Layout from "./Layout"
 import Home from "../pages/Home"
-import Contacts from "../pages/Contacts"
 import Login from "../pages/Login"
 import Register from "../pages/Register"
+import Contacts from "../pages/Contacts"
+
+import { Route, Routes } from "react-router-dom"
+import { useEffect } from "react"
+
+import { selectError } from "../Redux/contacts/slice"
+import { refreshThunk } from "../Redux/auth/operations"
+import "./App.css"
 
 function App() {
   const dispatch = useDispatch()
   const error = useSelector(selectError)
 
   useEffect(() => {
-    dispatch(fetchContacts())
+    dispatch(refreshThunk())
   }, [dispatch])
 
   if (error) return <h1>{error}</h1>

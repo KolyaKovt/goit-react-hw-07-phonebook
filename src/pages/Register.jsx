@@ -7,7 +7,6 @@ const Register = () => {
   const { register, handleSubmit, reset } = useForm()
 
   const sumbit = credentials => {
-    console.log(credentials);
     dispatch(registerThunk(credentials))
     reset()
   }
