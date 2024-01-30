@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { selectContacts } from "../Redux/contacts/slice"
 import { addContactThunk } from "../Redux/contacts/operations"
 
-const ContactFrom = () => {
+const ContactForm = () => {
   const dispatch = useDispatch()
   const { register, handleSubmit, reset } = useForm()
   const contacts = useSelector(selectContacts)
@@ -56,4 +56,4 @@ const ContactFrom = () => {
   )
 }
 
-export default ContactFrom
+export default ContactForm

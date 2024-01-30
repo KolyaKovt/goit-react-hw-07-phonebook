@@ -7,7 +7,7 @@ const ContactsList = () => {
   const contacts = useSelector(selectFilteredContacts)
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto pb-[50px]">
       <table className="table">
         <thead>
           <tr>
