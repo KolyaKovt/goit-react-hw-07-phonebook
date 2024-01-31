@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { motion } from "framer-motion"
 
 import { Input } from "../components/Input"
 
@@ -43,7 +44,11 @@ const Register = () => {
             </Link>
           </p>
         </div>
-        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 100, x: 0 }}
+          className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
+        >
           <form onSubmit={handleSubmit(submit)} className="card-body">
             <Input
               label="Name"
@@ -58,7 +63,7 @@ const Register = () => {
               placeholder="email"
               error={errors.email?.message}
               register={register}
-              />
+            />
             <Input
               label="Password"
               type="password"
@@ -71,7 +76,7 @@ const Register = () => {
               <button className="btn btn-primary">Login</button>
             </div>
           </form>
-        </div>
+        </motion.div>
       </div>
     </div>
   )
