@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form"
 import { useDispatch } from "react-redux"
-import { registerThunk } from "../Redux/auth/operations";
 import { Link } from "react-router-dom";
+
+import { registerThunk } from "../Redux/auth/operations";
 
 const Register = () => {
   const dispatch = useDispatch();

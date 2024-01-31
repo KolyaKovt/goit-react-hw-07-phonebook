@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
-import { selectIsLoggedIn } from "../Redux/auth/slice"
 import { Link } from "react-router-dom"
+
+import { selectIsLoggedIn } from "../Redux/auth/slice"
 
 const Home = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn)

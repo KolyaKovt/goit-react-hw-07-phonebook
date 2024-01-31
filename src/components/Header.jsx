@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
-import { selectIsLoggedIn } from "../Redux/auth/slice"
 import { useSelector } from "react-redux"
+
 import { AuthMenu } from "./AuthMenu"
 import { UserMenu } from "./UserMenu"
+
+import { selectIsLoggedIn } from "../Redux/auth/slice"
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn)
