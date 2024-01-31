@@ -4,7 +4,7 @@ import { useState } from "react"
 
 export const Input = ({
   label,
-  type = "text",
+  type,
   name,
   placeholder,
   error,
