@@ -46,7 +46,6 @@ const Login = () => {
           <form onSubmit={handleSubmit(submit)} className="card-body">
             <Input
               label="Email"
-              type="email"
               name="email"
               placeholder="email"
               error={errors.email?.message}
