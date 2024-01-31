@@ -21,7 +21,6 @@ const contactsSlice = createSlice({
       .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
         state.contacts = payload
       })
-      .addCase(logoutThunk.fulfilled, () => initialState)
       .addCase(addContactThunk.fulfilled, (state, { payload }) => {
         state.contacts.push(payload)
       })
@@ -30,6 +29,7 @@ const contactsSlice = createSlice({
           contact => contact.id !== payload.id
         )
       })
+      .addCase(logoutThunk.fulfilled, () => initialState)
       .addMatcher(
         isAnyOf(
           fetchContactsThunk.pending,
@@ -59,6 +59,7 @@ const contactsSlice = createSlice({
         ),
         (state, { payload }) => {
           state.error = payload
+          state.isLoading = false
         }
       )
   },

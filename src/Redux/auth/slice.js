@@ -1,4 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit"
+
 import {
   loginThunk,
   logoutThunk,
@@ -14,6 +15,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isLoading: false,
+  error: "",
 }
 
 const slice = createSlice({
@@ -27,15 +29,31 @@ const slice = createSlice({
         state.isLoggedIn = true
         state.isLoading = false
       })
-      .addCase(refreshThunk.pending, (state) => {
-        state.isLoading = true
-      })
+      .addMatcher(
+        isAnyOf(refreshThunk.pending, logoutThunk.pending, loginThunk.pending),
+        state => {
+          state.isLoading = true
+        }
+      )
       .addMatcher(
         isAnyOf(registerThunk.fulfilled, loginThunk.fulfilled),
         (state, { payload }) => {
           state.user = payload.user
           state.isLoggedIn = true
           state.token = payload.token
+          state.isLoading = false
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          logoutThunk.rejected,
+          registerThunk.rejected,
+          loginThunk.rejected,
+          refreshThunk.rejected
+        ),
+        (state, { payload }) => {
+          state.error = payload
+          state.isLoading = false
         }
       )
   },
@@ -44,6 +62,7 @@ const slice = createSlice({
     selectIsLoggedIn: state => state.isLoggedIn,
     selectIsLoading: state => state.isLoading,
     selectToken: state => state.token,
+    selectError: state => state.error,
   },
 })
 
@@ -53,4 +72,5 @@ export const {
   selectIsLoggedIn,
   selectIsLoading,
   selectToken,
+  selectError,
 } = slice.selectors

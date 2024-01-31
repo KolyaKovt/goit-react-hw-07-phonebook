@@ -9,21 +9,26 @@ import Contacts from "../pages/Contacts"
 import { Route, Routes } from "react-router-dom"
 import { useEffect } from "react"
 
-import { selectError } from "../Redux/contacts/slice"
+import { selectError as selectContactsError } from "../Redux/contacts/slice"
+import { selectError as selectAuthError, selectToken } from "../Redux/auth/slice"
 import { refreshThunk } from "../Redux/auth/operations"
 import "./App.css"
 import PrivateRoute from "../routes/PrivateRoute"
 import PublicRoute from "../routes/PublicRoute"
+import { toast } from "react-toastify"
 
 function App() {
   const dispatch = useDispatch()
-  const error = useSelector(selectError)
+  const contactsError = useSelector(selectContactsError)
+  const authError = useSelector(selectAuthError)
+  const token = useSelector(selectToken)
 
   useEffect(() => {
-    dispatch(refreshThunk())
-  }, [dispatch])
+    if (token) dispatch(refreshThunk(token))
+  }, [dispatch, token])
 
-  if (error) return <h1>{error}</h1>
+  if (contactsError) toast.error(contactsError)
+  if (authError) toast.error(authError)
 
   return (
     <Routes>
