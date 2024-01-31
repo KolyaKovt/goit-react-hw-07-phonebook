@@ -19,7 +19,10 @@ const Login = () => {
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
           <p className="py-6">
-            You don&apos;t have an account yet? You can register <Link className="" to={"/register"}>here</Link>
+            You don&apos;t have an account yet? You can register{" "}
+            <Link className="underline text-blue-500" to={"/register"}>
+              here
+            </Link>
           </p>
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">

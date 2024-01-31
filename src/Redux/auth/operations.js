@@ -24,7 +24,7 @@ export const loginThunk = createAsyncThunk(
       return user
     } catch (error) {
       if (error.response.status === 400) {
-        return thunkApi.rejectWithValue("Credentials is not valid")
+        return thunkApi.rejectWithValue("Credentials are not valid")
       }
       return thunkApi.rejectWithValue(error.message)
     }

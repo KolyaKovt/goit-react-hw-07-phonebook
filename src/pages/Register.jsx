@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form"
 import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
-import { registerThunk } from "../Redux/auth/operations";
+import { registerThunk } from "../Redux/auth/operations"
 
 const Register = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const { register, handleSubmit, reset } = useForm()
 
   const sumbit = credentials => {
@@ -19,7 +19,10 @@ const Register = () => {
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Register now!</h1>
           <p className="py-6">
-             You have an account yet? You can log in <Link to={"/login"}>here</Link>
+            You have an account yet? You can log in{" "}
+            <Link className="underline text-blue-500" to={"/login"}>
+              here
+            </Link>
           </p>
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
