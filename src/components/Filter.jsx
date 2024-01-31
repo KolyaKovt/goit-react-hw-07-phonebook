@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { selectFilter, setFilter } from "../Redux/filter/slice"
 
-const Filter = () => {
+export const Filter = () => {
   const dispatch = useDispatch()
   const filter = useSelector(selectFilter)
 
@@ -17,5 +17,3 @@ const Filter = () => {
     </>
   )
 }
-
-export default Filter

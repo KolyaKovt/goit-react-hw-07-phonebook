@@ -19,7 +19,7 @@ import {
 import { refreshThunk } from "../Redux/auth/operations"
 import "./App.css"
 
-function App() {
+export const App = () => {
   const dispatch = useDispatch()
   const contactsError = useSelector(selectContactsError)
   const authError = useSelector(selectAuthError)
@@ -66,5 +66,3 @@ function App() {
     </Routes>
   )
 }
-
-export default App

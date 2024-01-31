@@ -1,10 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import ContactsForm from "../components/ContactsForm"
-import Filter from "../components/Filter"
-import ContactsList from "../components/ContactsList"
-import { Loader } from "../components/Loader"
+import { ContactsForm, Filter, ContactsList, Loader } from "../components/"
 
 import { selectContactsAmount, selectIsLoading } from "../Redux/contacts/slice"
 import { fetchContactsThunk } from "../Redux/contacts/operations"
