@@ -33,6 +33,7 @@ const slice = createSlice({
         isAnyOf(refreshThunk.pending, logoutThunk.pending, loginThunk.pending),
         state => {
           state.isLoading = true
+          state.error = ""
         }
       )
       .addMatcher(

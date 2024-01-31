@@ -11,9 +11,11 @@ import Contacts from "../pages/Contacts"
 import PublicRoute from "../routes/PublicRoute"
 import PrivateRoute from "../routes/PrivateRoute"
 
-
 import { selectError as selectContactsError } from "../Redux/contacts/slice"
-import { selectError as selectAuthError, selectToken } from "../Redux/auth/slice"
+import {
+  selectError as selectAuthError,
+  selectToken,
+} from "../Redux/auth/slice"
 import { refreshThunk } from "../Redux/auth/operations"
 import "./App.css"
 
@@ -27,8 +29,10 @@ function App() {
     if (token) dispatch(refreshThunk(token))
   }, [dispatch, token])
 
-  if (contactsError) toast.error(contactsError)
-  if (authError) toast.error(authError)
+  useEffect(() => {
+    if (contactsError) toast.error(contactsError)
+    if (authError) toast.error(authError)
+  }, [authError, contactsError])
 
   return (
     <Routes>
