@@ -11,9 +11,10 @@ const Home = () => {
         <div className="max-w-md">
           <h1 className="text-5xl font-bold">Hello there</h1>
           <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Greetings to the Phonebook website! We&apos;re thrilled to welcome you to
+            our user-friendly platform designed to simplify your contact
+            management experience. Here, you have the power to effortlessly add
+            and organize your contacts with just a few clicks.
           </p>
           <Link
             to={isLoggedIn ? "/contacts" : "/login"}

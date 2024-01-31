@@ -25,6 +25,10 @@ const slice = createSlice({
       .addCase(refreshThunk.fulfilled, (state, { payload }) => {
         state.user = payload
         state.isLoggedIn = true
+        state.isLoading = false
+      })
+      .addCase(refreshThunk.pending, (state) => {
+        state.isLoading = true
       })
       .addMatcher(
         isAnyOf(registerThunk.fulfilled, loginThunk.fulfilled),
