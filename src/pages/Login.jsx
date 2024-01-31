@@ -1,17 +1,34 @@
 import { useForm } from "react-hook-form"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
+
+import { Input } from "../components/Input"
 
 import { loginThunk } from "../Redux/auth/operations"
 
 const Login = () => {
   const dispatch = useDispatch()
-  const { register, handleSubmit, reset } = useForm()
 
-  const sumbit = data => {
+  const submit = data => {
     dispatch(loginThunk(data))
     reset()
   }
+
+  const schema = yup.object({
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+  })
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  })
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -26,31 +43,23 @@ const Login = () => {
           </p>
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form onSubmit={handleSubmit(sumbit)} className="card-body">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                {...register("email")}
-                type="email"
-                placeholder="email"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                {...register("password")}
-                type="password"
-                placeholder="password"
-                className="input input-bordered"
-                required
-              />
-            </div>
+          <form onSubmit={handleSubmit(submit)} className="card-body">
+            <Input
+              label="Email"
+              type="email"
+              name="email"
+              placeholder="email"
+              error={errors.email?.message}
+              register={register}
+            />
+            <Input
+              label="Password"
+              type="password"
+              name="password"
+              placeholder="password"
+              error={errors.password?.message}
+              register={register}
+            />
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
             </div>
